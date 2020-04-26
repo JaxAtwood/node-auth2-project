@@ -14,7 +14,7 @@ const [id] = await db("users").insert(user, "id");
 
 
 function findUsers() {
-  return db("users").select("id", "username");
+  return db("users").select("id", "username", "department");
 }
 
 function findBy(filter) {
@@ -25,5 +25,6 @@ function findBy(filter) {
 function findUserById(id) {
   return db("users")
     .where({ id })
-    .first();
+    .first()
+    .select("id", "username", "department");
 }
