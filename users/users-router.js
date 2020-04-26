@@ -3,10 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const Users = require("./users-model.js");
-// const restricted = require("../auth/auth-router.js");
+const restricted = require("../auth/auth-router.js");
 
-// router.get("/", restricted, (req, res) => {
-router.get("/", (req, res) => {
+router.get("/", restricted, (req, res) => {
+// router.get("/", (req, res) => {
 
   Users.findUsers()
     .then(users => {
@@ -15,4 +15,6 @@ router.get("/", (req, res) => {
     .catch(err => 
         res.status(500).json({ errorMessage: "You shant pass", err }));
 });
- module.exports = router;
+
+
+module.exports = router;
