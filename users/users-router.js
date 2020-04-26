@@ -1,15 +1,14 @@
 const express = require("express");
-
 const router = express.Router();
 
 const Users = require("./users-model.js");
-const restricted = require("../auth/auth-router.js");
+const restrict = require("../auth/restricted.js");
 
-router.get("/", restricted, (req, res) => {
-// router.get("/", (req, res) => {
+router.get("/", restrict(), (req, res) => {
 
   Users.findUsers()
     .then(users => {
+      console.log("here")
       res.status(200).json(users);
     })
     .catch(err => 
